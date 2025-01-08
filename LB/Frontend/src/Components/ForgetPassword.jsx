@@ -12,6 +12,7 @@ const ForgetPassword = ({ closeModal, openOtpCaptchaModal }) => {
     console.log({ userType, email });
     closeModal();
     openOtpCaptchaModal();
+    
   };
 
   return (
