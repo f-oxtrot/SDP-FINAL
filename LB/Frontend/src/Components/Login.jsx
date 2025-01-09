@@ -14,6 +14,8 @@ const Login = ({ closeModal, openSignupModal, openForgetPasswordModal, message }
     e.preventDefault();
     if (userType === 'hospital') {
       navigate('/hospital-dashboard');
+    } else if (userType === 'doctor') {
+      navigate('/doctor-dashboard'); // Navigate to doctor dashboard
     } else {
       // Handle other user types
       console.log({ userType, userId, password });

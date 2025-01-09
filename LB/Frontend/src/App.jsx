@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header';
 import DescriptionSection from './Components/DescriptionSection';
@@ -8,6 +8,7 @@ import DoctorsSection from './Components/DoctorsSection';
 import ContactSection from './Components/ContactSection';
 import ModalManager from './Components/ModalManager';
 import HospitalDashboard from './Components/HospitalDashboard';
+import DoctorDashboard from './Components/DoctorDashboard'; // Import the new component
 
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -115,11 +116,10 @@ function App() {
           </>
         } />
         <Route path="/hospital-dashboard" element={<HospitalDashboard />} />
+        <Route path="/doctor-dashboard" element={<DoctorDashboard />} /> {/* Add this line */}
       </Routes>
     </Router>
   );
 }
 
-
-
-export default App;    
+export default App;
