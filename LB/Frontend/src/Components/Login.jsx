@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import logo from '../assets/Images/logo.png';
 
@@ -7,16 +8,20 @@ const Login = ({ closeModal, openSignupModal, openForgetPasswordModal, message }
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [warning, setWarning] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log({ userType, userId, password });
-    closeModal();
+    if (userType === 'hospital') {
+      navigate('/hospital-dashboard');
+    } else {
+      // Handle other user types
+      console.log({ userType, userId, password });
+      closeModal();
+    }
   };
 
   const handleUserIdChange = (e) => {
-    
     const value = e.target.value;
     if (/^\d*$/.test(value)) {
       setUserId(value);

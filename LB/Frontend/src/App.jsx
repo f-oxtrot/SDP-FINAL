@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header';
 import DescriptionSection from './Components/DescriptionSection';
@@ -6,6 +7,7 @@ import IntegratedHospitalsSection from './Components/IntegratedHospitalsSection'
 import DoctorsSection from './Components/DoctorsSection';
 import ContactSection from './Components/ContactSection';
 import ModalManager from './Components/ModalManager';
+import HospitalDashboard from './Components/HospitalDashboard';
 
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -88,26 +90,33 @@ function App() {
   };
 
   return (
-    <>
-      <Header scrollToDescription={scrollToDescription} scrollToContact={scrollToContact} openLoginModal={openLoginModal} />
-      <DescriptionSection descriptions={descriptions} />
-      <IntegratedHospitalsSection />
-      <DoctorsSection doctors={doctors} />
-      <ContactSection scrollToTop={scrollToTop} />
-      <ModalManager
-        isLoginOpen={isLoginOpen}
-        isSignupOpen={isSignupOpen}
-        isForgetPasswordOpen={isForgetPasswordOpen}
-        isOtpCaptchaOpen={isOtpCaptchaOpen}
-        closeLoginModal={closeLoginModal}
-        closeSignupModal={closeSignupModal}
-        closeForgetPasswordModal={closeForgetPasswordModal}
-        closeOtpCaptchaModal={closeOtpCaptchaModal}
-        openSignupModal={openSignupModal}
-        openForgetPasswordModal={openForgetPasswordModal}
-        openOtpCaptchaModal={openOtpCaptchaModal}
-      />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Header scrollToDescription={scrollToDescription} scrollToContact={scrollToContact} openLoginModal={openLoginModal} />
+            <DescriptionSection descriptions={descriptions} />
+            <IntegratedHospitalsSection />
+            <DoctorsSection doctors={doctors} />
+            <ContactSection scrollToTop={scrollToTop} />
+            <ModalManager
+              isLoginOpen={isLoginOpen}
+              isSignupOpen={isSignupOpen}
+              isForgetPasswordOpen={isForgetPasswordOpen}
+              isOtpCaptchaOpen={isOtpCaptchaOpen}
+              closeLoginModal={closeLoginModal}
+              closeSignupModal={closeSignupModal}
+              closeForgetPasswordModal={closeForgetPasswordModal}
+              closeOtpCaptchaModal={closeOtpCaptchaModal}
+              openSignupModal={openSignupModal}
+              openForgetPasswordModal={openForgetPasswordModal}
+              openOtpCaptchaModal={openOtpCaptchaModal}
+            />
+          </>
+        } />
+        <Route path="/hospital-dashboard" element={<HospitalDashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
