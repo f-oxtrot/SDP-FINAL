@@ -1,13 +1,77 @@
 .doctor-dashboard {
     display: flex;
-    flex-direction: column;
     height: 100vh;
     overflow: hidden;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: rgba(117, 186, 255, 0.8); /* Added transparency */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.user-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.user-info h2 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.menu {
+    width: 100%;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu li:hover {
+    background-color: #34495e;
+}
+
+.icon {
+    margin-right: 10px;
 }
 
 .main-content {
     flex-grow: 1;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
 }
 
 .background-video {
@@ -18,12 +82,4 @@
     height: 100%;
     object-fit: cover;
     z-index: -1;
-}
-
-.logo {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 100px; /* Adjust the size as needed */
-    z-index: 1; /* Ensure it is above the video */
 }
