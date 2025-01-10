@@ -5,6 +5,7 @@ import logo from '../assets/Images/logo.png';
 import profilePic from '../assets/Images/pran.jpeg';
 import UpdateProfile from './UpdateProfile';
 import PrescriptionForm from './PrescriptionForm';
+import PatientHistory from './PatientHistory';
 import './DoctorDashboard.css';
 
 const DoctorDashboard = () => {
@@ -69,6 +70,13 @@ const DoctorDashboard = () => {
   const filteredAppointments = appointments.filter(appointment =>
     appointment.nid.includes(searchTerm)
   );
+
+  const patientHistory = {
+    recentDisease: 'Flu',
+    allergicReaction: 'Peanuts',
+    vaccinationDetails: 'COVID-19, Influenza',
+    pregnancyStatus: 'Not Pregnant'
+  };
 
   return (
     <div className="doctor-dashboard">
@@ -137,7 +145,10 @@ const DoctorDashboard = () => {
           <div className="modal">
             <div className="modal-content">
               <span className="close" onClick={closePrescriptionForm}>&times;</span>
-              <PrescriptionForm appointment={selectedAppointment} closeModal={closePrescriptionForm} />
+              <div className="prescription-container">
+                <PrescriptionForm appointment={selectedAppointment} closeModal={closePrescriptionForm} />
+                <PatientHistory patientHistory={patientHistory} />
+              </div>
             </div>
           </div>
         )}

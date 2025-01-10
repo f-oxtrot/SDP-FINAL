@@ -1,5 +1,9 @@
 .form-container {
-    padding: 20px;
+    padding: 10px;
+    background-color: #f9f9f988;
+    width: 70%; /* Adjusted width */
+    max-width: 1200px; /* Set a maximum width */
+    margin: 0 auto; /* Center the container */
   }
   
   .form-title {
@@ -10,9 +14,16 @@
     font-family: 'Poppins', sans-serif;
   }
   
+  .form-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Added gap between form and patient history */
+  }
+  
   .form {
     display: flex;
     flex-direction: column;
+    width: 100%; /* Adjusted width */
   }
   
   .form-group {
@@ -61,16 +72,20 @@
     background-color: #0056b3;
   }
   
-  .medicine-group, .test-group {
-    display: flex;
-    align-items: center;
+  .medicine-group {
     margin-bottom: 10px;
   }
   
   .dose-group {
     display: flex;
     gap: 10px;
-    margin-left: 10px;
+    margin-top: 10px; /* Added margin to shift dose checkboxes to next line */
+  }
+  
+  .dose-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
   }
   
   .delete-button {
@@ -80,9 +95,30 @@
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
-    margin-left: 10px;
+    margin-top: 10px; /* Added margin to align with dose checkboxes */
   }
   
   .delete-button:hover {
     background-color: #ff1a1a;
+  }
+  
+  .patient-history {
+    width: 28%; /* Adjusted width */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .patient-history h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .patient-history p {
+    margin-bottom: 10px;
+    color: #555;
+    font-family: 'Poppins', sans-serif;
   }
