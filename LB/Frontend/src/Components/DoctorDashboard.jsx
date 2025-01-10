@@ -14,6 +14,19 @@ const DoctorDashboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isPrescriptionFormOpen, setIsPrescriptionFormOpen] = useState(false);
   const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [notifications, setNotifications] = useState([
+    { id: 1, message: 'New appointment request from Rahim Uddin', time: '10:30 AM' },
+    { id: 2, message: 'New appointment request from Karim Ahmed', time: '11:00 AM' },
+    { id: 3, message: 'New appointment request from Abdul Latif', time: '11:30 AM' },
+    { id: 4, message: 'New appointment request from Fatema Begum', time: '12:00 PM' },
+    { id: 5, message: 'New appointment request from Shakib Al Hasan', time: '12:30 PM' },
+    { id: 6, message: 'New appointment request from Nusrat Jahan', time: '01:00 PM' },
+    { id: 7, message: 'New appointment request from Ayesha Siddiqua', time: '01:30 PM' },
+    { id: 8, message: 'New appointment request from Mizanur Rahman', time: '02:00 PM' },
+    { id: 9, message: 'New appointment request from Rafiqul Islam', time: '02:30 PM' },
+    { id: 10, message: 'New appointment request from Salma Khatun', time: '03:00 PM' }
+  ]);
 
   const handleLogout = () => {
     window.location.href = '/';
@@ -47,6 +60,14 @@ const DoctorDashboard = () => {
   const closePrescriptionForm = () => {
     setIsPrescriptionFormOpen(false);
     setSelectedAppointment(null);
+  };
+
+  const handleShowNotifications = () => {
+    setShowNotifications(true);
+  };
+
+  const handleHideNotifications = () => {
+    setShowNotifications(false);
   };
 
   const appointments = [
@@ -90,7 +111,7 @@ const DoctorDashboard = () => {
           <ul>
             <li><FaTachometerAlt className="icon" /> Dashboard</li>
             <li onClick={handleShowAppointments}><FaCalendarCheck className="icon" /> Appointment</li>
-            <li><FaBell className="icon" /> Notifications</li>
+            <li onClick={handleShowNotifications}><FaBell className="icon" /> Notifications</li>
             <li onClick={handleUpdateProfile}><FaUserEdit className="icon" /> Update Profile</li>
             <li onClick={handleLogout}><FaSignOutAlt className="icon" /> Logout</li>
           </ul>
@@ -139,6 +160,22 @@ const DoctorDashboard = () => {
                 ))}
               </tbody>
             </table>
+          </div>
+        )}
+        {showNotifications && (
+          <div className="notifications">
+            <div className="notifications-header">
+              <h2>Notifications</h2>
+              <FaTimes className="exit-icon" onClick={handleHideNotifications} />
+            </div>
+            <ul className="notifications-list">
+              {notifications.map(notification => (
+                <li key={notification.id} className="notification-item">
+                  <span className="notification-message">{notification.message}</span>
+                  <span className="notification-time">{notification.time}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
         {isPrescriptionFormOpen && (
