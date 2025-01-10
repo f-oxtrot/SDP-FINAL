@@ -4,12 +4,15 @@ import backgroundVideo from '../assets/Images/hos.mp4';
 import logo from '../assets/Images/logo.png';
 import profilePic from '../assets/Images/pran.jpeg';
 import UpdateProfile from './UpdateProfile';
+import PrescriptionForm from './PrescriptionForm';
 import './DoctorDashboard.css';
 
 const DoctorDashboard = () => {
   const [isUpdateProfileOpen, setIsUpdateProfileOpen] = useState(false);
   const [showAppointments, setShowAppointments] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isPrescriptionFormOpen, setIsPrescriptionFormOpen] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
 
   const handleLogout = () => {
     window.location.href = '/';
@@ -35,6 +38,16 @@ const DoctorDashboard = () => {
     setSearchTerm(event.target.value);
   };
 
+  const handlePrescribe = (appointment) => {
+    setSelectedAppointment(appointment);
+    setIsPrescriptionFormOpen(true);
+  };
+
+  const closePrescriptionForm = () => {
+    setIsPrescriptionFormOpen(false);
+    setSelectedAppointment(null);
+  };
+
   const appointments = [
     { nid: '123456789', name: 'Rahim Uddin', problem: 'Flu with high fever', age: 30 },
     { nid: '987654321', name: 'Karim Ahmed', problem: 'Severe headache and dizziness', age: 25 },
@@ -50,7 +63,7 @@ const DoctorDashboard = () => {
     { nid: '258147369', name: 'Farida Begum', problem: 'Thyroid disorder', age: 37 },
     { nid: '159753486', name: 'Mahmudul Hasan', problem: 'Heart disease', age: 60 },
     { nid: '753486159', name: 'Rokeya Begum', problem: 'Skin infection', age: 32 },
-    { nid: '486159753', name: 'Tariqul Islam', problem: 'Liver cirrhosis', age: 52 }
+    { nid: '486159753', name: 'Minhazul Arefin', problem: 'Taare Zameen Paar', age: 24 }
   ];
 
   const filteredAppointments = appointments.filter(appointment =>
@@ -113,11 +126,19 @@ const DoctorDashboard = () => {
                     <td>{appointment.name}</td>
                     <td>{appointment.problem}</td>
                     <td>{appointment.age}</td>
-                    <td><button className="prescribe-button">PRESCRIBE</button></td>
+                    <td><button className="prescribe-button" onClick={() => handlePrescribe(appointment)}>PRESCRIBE</button></td>
                   </tr>
                 ))}
               </tbody>
             </table>
+          </div>
+        )}
+        {isPrescriptionFormOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={closePrescriptionForm}>&times;</span>
+              <PrescriptionForm appointment={selectedAppointment} closeModal={closePrescriptionForm} />
+            </div>
           </div>
         )}
         {isUpdateProfileOpen && (
