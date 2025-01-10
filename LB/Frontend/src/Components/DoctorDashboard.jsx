@@ -1,18 +1,26 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import { FaTachometerAlt, FaCalendarCheck, FaPrescriptionBottle, FaBell, FaUserEdit, FaSignOutAlt } from 'react-icons/fa';
 import backgroundVideo from '../assets/Images/hos.mp4';
 import logo from '../assets/Images/logo.png';
-import profilePic from '../assets/Images/pran.jpeg'; // Add the path to the profile picture
+import profilePic from '../assets/Images/pran.jpeg';
+import UpdateProfile from './UpdateProfile';
 import './DoctorDashboard.css';
 
 const DoctorDashboard = () => {
-  const navigate = useNavigate();
+  const [isUpdateProfileOpen, setIsUpdateProfileOpen] = useState(false);
 
   const handleLogout = () => {
     // Clear any authentication tokens or user data here
     // For example: localStorage.removeItem('authToken');
-    navigate('/');
+    window.location.href = '/'; // Redirect to the login page
+  };
+
+  const handleUpdateProfile = () => {
+    setIsUpdateProfileOpen(true);
+  };
+
+  const closeUpdateProfile = () => {
+    setIsUpdateProfileOpen(false);
   };
 
   return (
@@ -29,7 +37,7 @@ const DoctorDashboard = () => {
             <li><FaCalendarCheck className="icon" /> Appointment</li>
             <li><FaPrescriptionBottle className="icon" /> Prescribe</li>
             <li><FaBell className="icon" /> Notifications</li>
-            <li><FaUserEdit className="icon" /> Update Profile</li>
+            <li onClick={handleUpdateProfile}><FaUserEdit className="icon" /> Update Profile</li>
             <li onClick={handleLogout}><FaSignOutAlt className="icon" /> Logout</li>
           </ul>
         </nav>
@@ -39,6 +47,14 @@ const DoctorDashboard = () => {
           <source src={backgroundVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        {isUpdateProfileOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={closeUpdateProfile}>&times;</span>
+              <UpdateProfile closeModal={closeUpdateProfile} />
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
