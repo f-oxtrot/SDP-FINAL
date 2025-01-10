@@ -8,6 +8,7 @@ import './DoctorDashboard.css';
 
 const DoctorDashboard = () => {
   const [isUpdateProfileOpen, setIsUpdateProfileOpen] = useState(false);
+  const [showAppointments, setShowAppointments] = useState(false);
 
   const handleLogout = () => {
     // Clear any authentication tokens or user data here
@@ -23,6 +24,10 @@ const DoctorDashboard = () => {
     setIsUpdateProfileOpen(false);
   };
 
+  const handleShowAppointments = () => {
+    setShowAppointments(true);
+  };
+
   return (
     <div className="doctor-dashboard">
       <img src={logo} alt="LifeBeacon Logo" className="logo" />
@@ -34,8 +39,7 @@ const DoctorDashboard = () => {
         <nav className="menu">
           <ul>
             <li><FaTachometerAlt className="icon" /> Dashboard</li>
-            <li><FaCalendarCheck className="icon" /> Appointment</li>
-            <li><FaPrescriptionBottle className="icon" /> Prescribe</li>
+            <li onClick={handleShowAppointments}><FaCalendarCheck className="icon" /> Appointment</li>
             <li><FaBell className="icon" /> Notifications</li>
             <li onClick={handleUpdateProfile}><FaUserEdit className="icon" /> Update Profile</li>
             <li onClick={handleLogout}><FaSignOutAlt className="icon" /> Logout</li>
@@ -47,6 +51,58 @@ const DoctorDashboard = () => {
           <source src={backgroundVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        {showAppointments && (
+          <div className="appointments-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>NID</th>
+                  <th>Name</th>
+                  <th>Problem</th>
+                  <th>Age</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>123456789</td>
+                  <td>John Doe</td>
+                  <td>Flu</td>
+                  <td>30</td>
+                  <td><button>PRESCRIBE</button></td>
+                </tr>
+                <tr>
+                  <td>987654321</td>
+                  <td>Jane Smith</td>
+                  <td>Headache</td>
+                  <td>25</td>
+                  <td><button>PRESCRIBE</button></td>
+                </tr>
+                <tr>
+                  <td>456789123</td>
+                  <td>Michael Johnson</td>
+                  <td>Back Pain</td>
+                  <td>45</td>
+                  <td><button>PRESCRIBE</button></td>
+                </tr>
+                <tr>
+                  <td>789123456</td>
+                  <td>Emily Davis</td>
+                  <td>Allergy</td>
+                  <td>35</td>
+                  <td><button>PRESCRIBE</button></td>
+                </tr>
+                <tr>
+                  <td>321654987</td>
+                  <td>Chris Brown</td>
+                  <td>Diabetes</td>
+                  <td>50</td>
+                  <td><button>PRESCRIBE</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        )}
         {isUpdateProfileOpen && (
           <div className="modal">
             <div className="modal-content">

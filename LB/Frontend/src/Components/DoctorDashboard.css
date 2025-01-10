@@ -84,3 +84,43 @@
     z-index: -1;
     opacity: .3;
 }
+.appointments-table {
+    margin-top: 20px;
+    width: 80%;
+    background-color: rgba(96, 185, 226, 0.8);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.appointments-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.appointments-table th, .appointments-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.appointments-table th {
+    background-color: #05305c;
+    color: rgb(255, 255, 255);
+}
+
+.appointments-table tr:hover {
+    background-color: #000000;
+}
+
+.appointments-table button {
+    padding: 5px 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.appointments-table button:hover {
+    background-color: #2980b9;
+}
