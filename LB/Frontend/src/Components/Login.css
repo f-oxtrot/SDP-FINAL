@@ -13,12 +13,12 @@
 }
 
 .modal-content {
-  background: #ffffff;
+  background: linear-gradient(135deg, #ffffff, #f0f0f0); /* Subtle gradient */
   margin: auto;
   padding: 40px;
   border-radius: 10px; /* Rounded corners */
   width: 90%;
-  max-width: 400px;
+  max-width: 320px; /* Reduced max-width */
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
 }
@@ -78,10 +78,11 @@ form {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-top: 5px;
-  width: 100%;
-  background-color: white; /* White background */
-  color: black; /* Black text */
-  transition: border-color 0.3s; /* Smooth transition */
+  width: 100%; /* Ensure it takes full width */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  background-color: white;
+  color: black;
+  transition: border-color 0.3s;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -96,10 +97,11 @@ form {
   color: white;
   background-color: #007bff;
   border: none;
-  border-radius: 5px; /* Rounded corners */
+  border-radius: 5px;
   cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s; /* Smooth transition */
+  width: 100%; /* Ensure it takes full width */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  transition: background-color 0.3s;
   font-family: 'Poppins', sans-serif;
 }
 

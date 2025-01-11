@@ -9,9 +9,11 @@ import RequestAppointmentTable from './RequestAppointmentTable';
 import AppointmentForm from './AppointmentForm';
 import VaccinationDetailsTable from './VaccinationDetailsTable';
 import VaccinationForm from './VaccinationForm';
+import DiseaseHistoryTable from './DiseaseHistoryTable';
 import './DoctorDashboard.css'; // Reuse the same CSS
 import './VaccinationDetailsTable.css'; // New CSS file
 import './VaccinationForm.css'; // New CSS file
+import './DiseaseHistoryTable.css'; // New CSS file
 
 const PatientDashboard = () => {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -21,6 +23,7 @@ const PatientDashboard = () => {
   const [isAppointmentFormOpen, setIsAppointmentFormOpen] = useState(false);
   const [isVaccinationDetailsOpen, setIsVaccinationDetailsOpen] = useState(false);
   const [isVaccinationFormOpen, setIsVaccinationFormOpen] = useState(false);
+  const [isDiseaseHistoryOpen, setIsDiseaseHistoryOpen] = useState(false);
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [notifications, setNotifications] = useState([
     { id: 1, message: 'New vaccination update available', time: '10:30 AM' },
@@ -88,6 +91,14 @@ const PatientDashboard = () => {
     setIsVaccinationFormOpen(false);
   };
 
+  const handleDiseaseHistory = () => {
+    setIsDiseaseHistoryOpen(true);
+  };
+
+  const closeDiseaseHistory = () => {
+    setIsDiseaseHistoryOpen(false);
+  };
+
   const addVaccination = (vaccination) => {
     setNotifications((prevNotifications) => [
       ...prevNotifications,
@@ -106,7 +117,7 @@ const PatientDashboard = () => {
         <nav className="menu">
           <ul>
             <li><FaTachometerAlt className="icon" /> Dashboard</li>
-            <li><FaHistory className="icon" /> Disease History</li>
+            <li onClick={handleDiseaseHistory}><FaHistory className="icon" /> Disease History</li>
             <li onClick={handleVaccinationDetails}><FaSyringe className="icon" /> Vaccination Details</li>
             <li onClick={handleRequestAppointment}><FaCalendarCheck className="icon" /> Request Appointment</li>
             <li onClick={handleDonateBlood}><FaHeart className="icon" /> Donate Blood</li>
@@ -182,6 +193,14 @@ const PatientDashboard = () => {
             <div className="modal-content">
               <span className="close" onClick={closeVaccinationForm}>&times;</span>
               <VaccinationForm addVaccination={addVaccination} closeModal={closeVaccinationForm} />
+            </div>
+          </div>
+        )}
+        {isDiseaseHistoryOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={closeDiseaseHistory}>&times;</span>
+              <DiseaseHistoryTable closeModal={closeDiseaseHistory} />
             </div>
           </div>
         )}

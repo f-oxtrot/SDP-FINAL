@@ -7,6 +7,11 @@ const VaccinationDetailsTable = ({ openForm }) => {
     { id: 1, name: 'COVID-19', date: '2021-01-01', institution: 'Health Center', doses: 2 },
     { id: 2, name: 'Flu', date: '2020-10-15', institution: 'Clinic', doses: 1 },
     // Add more initial data if needed
+  { id: 3, name: 'Hepatitis B', date: '2021-02-01', institution: 'Pediatric Clinic', doses: 3 },
+  { id: 4, name: 'Rotavirus', date: '2021-03-01', institution: 'Pediatric Clinic', doses: 2 },
+  { id: 5, name: 'Diphtheria, Tetanus, and Pertussis (DTaP)', date: '2021-04-01', institution: 'Pediatric Clinic', doses: 5 },
+  { id: 6, name: 'Haemophilus influenzae type b (Hib)', date: '2021-05-01', institution: 'Pediatric Clinic', doses: 4 },
+  { id: 7, name: 'Pneumococcal conjugate', date: '2021-06-01', institution: 'Pediatric Clinic', doses: 4 },
   ]);
 
   const filteredVaccinations = vaccinations.filter(vaccination =>
