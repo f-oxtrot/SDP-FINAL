@@ -9,7 +9,8 @@ import ContactSection from './Components/ContactSection';
 import ModalManager from './Components/ModalManager';
 import HospitalDashboard from './Components/HospitalDashboard';
 import DoctorDashboard from './Components/DoctorDashboard';
-import UpdateProfile from './Components/UpdateProfile'; // Import the new component
+import PatientDashboard from './Components/PatientDashboard'; // Import the new component
+import UpdateProfile from './Components/UpdateProfile';
 
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -118,7 +119,8 @@ function App() {
         } />
         <Route path="/hospital-dashboard" element={<HospitalDashboard />} />
         <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
-        <Route path="/update-profile" element={<UpdateProfile />} /> {/* Add this line */}
+        <Route path="/patient-dashboard" element={<PatientDashboard />} /> {/* Add this line */}
+        <Route path="/update-profile" element={<UpdateProfile />} />
       </Routes>
     </Router>
   );
