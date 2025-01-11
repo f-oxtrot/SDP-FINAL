@@ -16,6 +16,10 @@ const HospitalDashboard = () => {
   const [scheduleDate, setScheduleDate] = useState('');
   const [scheduleTime, setScheduleTime] = useState('');
   const [patientNid, setPatientNid] = useState('');
+  const [bloodType, setBloodType] = useState('');
+  const [units, setUnits] = useState('');
+  const [requestDate, setRequestDate] = useState('');
+  const [status, setStatus] = useState('');
   const navigate = useNavigate();
 
   const handleOptionClick = (option) => {
@@ -88,6 +92,12 @@ const HospitalDashboard = () => {
     console.log(`Scheduled for Dr. ${doctorName} on ${scheduleDate} at ${scheduleTime} for patient NID ${patientNid}`);
   };
 
+  const handleBloodRequestSubmit = (e) => {
+    e.preventDefault();
+    // Handle blood request submission
+    console.log(`Requested ${units} units of ${bloodType} blood on ${requestDate} with status ${status}`);
+  };
+
   return (
     <div className="dashboard-container">
       <video className="dashboard-video" src={videoSrc} autoPlay loop muted />
@@ -100,14 +110,16 @@ const HospitalDashboard = () => {
         <ul>
           <li onClick={() => handleOptionClick('Diagnosis Report')}>Diagnosis Report</li>
           <li onClick={() => handleOptionClick('Doctors Appointment')}>Doctors Appointment</li>
-          <li onClick={() => handleOptionClick('Give Schedule')}>Give Schedule</li> {/* Add this line */}
-          <li onClick={() => handleOptionClick('Sign Out')}>Sign Out</li> {/* Add this line */}
+          <li onClick={() => handleOptionClick('Give Schedule')}>Give Schedule</li>
+          <li onClick={() => handleOptionClick('Request Blood')}>Request Blood</li> {/* Add this line */}
+          <li onClick={() => handleOptionClick('Sign Out')}>Sign Out</li>
         </ul>
       </aside>
       <main className="dashboard-main">
         {selectedOption === 'Diagnosis Report' && (
           <div className="diagnosis-report">
             <button className="close-button" onClick={handleCloseForm}>×</button>
+            <h2>Diagnosis Report</h2>
             <form onSubmit={handleSearchSubmit} className="search-form">
               <input
                 type="text"
@@ -244,6 +256,68 @@ const HospitalDashboard = () => {
                   onChange={(e) => setPatientNid(e.target.value)}
                   className="form-control"
                 />
+              </div>
+              <button type="submit" className="submit-button">Submit</button>
+            </form>
+          </div>
+        )}
+        {selectedOption === 'Request Blood' && (
+          <div className="request-blood">
+            <button className="close-button" onClick={handleCloseForm}>×</button>
+            <h2>Request Blood</h2>
+            <form onSubmit={handleBloodRequestSubmit} className="blood-request-form">
+              <div className="form-group">
+                <label htmlFor="blood-type">Blood Type</label>
+                <select
+                  id="blood-type"
+                  value={bloodType}
+                  onChange={(e) => setBloodType(e.target.value)}
+                  className="form-control"
+                >
+                  <option value="">Select Blood Type</option>
+                  <option value="A+">A+</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="AB-">AB-</option>
+                  <option value="O+">O+</option>
+                  <option value="O-">O-</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="units">Units</label>
+                <input
+                  type="number"
+                  id="units"
+                  value={units}
+                  onChange={(e) => setUnits(e.target.value)}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="request-date">Date</label>
+                <input
+                  type="date"
+                  id="request-date"
+                  value={requestDate}
+                  onChange={(e) => setRequestDate(e.target.value)}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="status">Status</label>
+                <select
+                  id="status"
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                  className="form-control"
+                >
+                  <option value="">Select Status</option>
+                  <option value="Urgent">Urgent</option>
+                  <option value="Regular">Regular</option>
+                  <option value="Blood Bank">Blood Bank</option>
+                </select>
               </div>
               <button type="submit" className="submit-button">Submit</button>
             </form>

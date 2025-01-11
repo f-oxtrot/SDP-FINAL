@@ -16,12 +16,12 @@
   object-fit: cover;
   transform: translate(-50%, -50%);
   z-index: -1; 
-  opacity: 0.4;/* Ensure the video is behind other content */
+  opacity: 0.4; /* Ensure the video is behind other content */
 }
 
 .dashboard-header {
   background-color: rgba(52, 32, 152, 0);
-  color: #fff;
+  color: #0a4b5d;
   padding: 20px;
   text-align: center;
   position: relative; /* Add relative positioning */
@@ -30,7 +30,7 @@
 }
 
 .dashboard-header:hover {
-  background-color: rgba(52, 32, 152, 0); /* Change background color on hover */
+  background-color: rgba(59, 8, 104, 0.106); /* Change background color on hover */
   color: #ffffff; /* Change text color on hover */
 }
 
@@ -65,7 +65,7 @@
   left: 0; /* Position the sidebar on the left */
   width: 200px;
   height: 100%;
-  background-color: rgba(52, 32, 152, 0.076);
+  background-color: rgba(52, 32, 152, 0.027);
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Adjust the shadow direction */
   padding: 20px;
   display: flex;
@@ -75,7 +75,7 @@
 }
 
 .dashboard-sidebar:hover {
-  background-color: rgba(52, 32, 152, 0.26); /* Change background color on hover */
+  background-color: rgba(52, 32, 152, 0.24); /* Change background color on hover */
 }
 
 .dashboard-sidebar ul {
@@ -95,8 +95,11 @@
   color: #ffcc00;
 }
 
-.diagnosis-report {
-  background-color: rgba(244, 244, 247, 0.528);
+.diagnosis-report,
+.doctors-appointment,
+.give-schedule,
+.request-blood {
+  background-color: rgba(255, 255, 255, 0.9);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -104,7 +107,7 @@
   max-width: 600px;
   text-align: center;
   position: relative;
-  color: #333; 
+  color: #333;
 }
 
 .search-form {
@@ -126,7 +129,7 @@
 .search-button {
   padding: 10px;
   font-size: 1em;
-  color: rgb(255, 251, 251);
+  color: white;
   background-color: #007bff;
   border: none;
   border-radius: 5px;
@@ -191,21 +194,9 @@
   margin-bottom: 5px;
 }
 
-.doctors-appointment {
-  background-color: rgba(255, 255, 255, 0.542);
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 30%;
-  max-width: 800px;
-  text-align: center;
-  position: relative;
-  color: #333;
-}
-
 .date-picker {
   padding: 10px;
-  font-size: 1.75em;
+  font-size: 1em;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -251,19 +242,8 @@
   background-color: #c82333;
 }
 
-.give-schedule {
-  background-color: rgba(255, 255, 255, 0.518);
-  padding: 50px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 60%;
-  max-width: 800px;
-  text-align: center;
-  position: relative;
-  color: #333;
-}
-
-.schedule-form {
+.schedule-form,
+.blood-request-form {
   display: flex;
   flex-direction: column;
   align-items: center;
