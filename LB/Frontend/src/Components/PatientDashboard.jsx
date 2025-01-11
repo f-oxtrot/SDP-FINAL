@@ -7,7 +7,11 @@ import UpdatePatientInfo from './UpdatePatientInfo';
 import DonateBloodTable from './DonateBloodTable';
 import RequestAppointmentTable from './RequestAppointmentTable';
 import AppointmentForm from './AppointmentForm';
+import VaccinationDetailsTable from './VaccinationDetailsTable';
+import VaccinationForm from './VaccinationForm';
 import './DoctorDashboard.css'; // Reuse the same CSS
+import './VaccinationDetailsTable.css'; // New CSS file
+import './VaccinationForm.css'; // New CSS file
 
 const PatientDashboard = () => {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -15,6 +19,8 @@ const PatientDashboard = () => {
   const [isDonateBloodOpen, setIsDonateBloodOpen] = useState(false);
   const [isRequestAppointmentOpen, setIsRequestAppointmentOpen] = useState(false);
   const [isAppointmentFormOpen, setIsAppointmentFormOpen] = useState(false);
+  const [isVaccinationDetailsOpen, setIsVaccinationDetailsOpen] = useState(false);
+  const [isVaccinationFormOpen, setIsVaccinationFormOpen] = useState(false);
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [notifications, setNotifications] = useState([
     { id: 1, message: 'New vaccination update available', time: '10:30 AM' },
@@ -66,6 +72,29 @@ const PatientDashboard = () => {
     setIsAppointmentFormOpen(false);
   };
 
+  const handleVaccinationDetails = () => {
+    setIsVaccinationDetailsOpen(true);
+  };
+
+  const closeVaccinationDetails = () => {
+    setIsVaccinationDetailsOpen(false);
+  };
+
+  const openVaccinationForm = () => {
+    setIsVaccinationFormOpen(true);
+  };
+
+  const closeVaccinationForm = () => {
+    setIsVaccinationFormOpen(false);
+  };
+
+  const addVaccination = (vaccination) => {
+    setNotifications((prevNotifications) => [
+      ...prevNotifications,
+      { id: prevNotifications.length + 1, message: `New vaccination added: ${vaccination.name}`, time: new Date().toLocaleTimeString() }
+    ]);
+  };
+
   return (
     <div className="doctor-dashboard">
       <img src={logo} alt="LifeBeacon Logo" className="logo" />
@@ -78,7 +107,7 @@ const PatientDashboard = () => {
           <ul>
             <li><FaTachometerAlt className="icon" /> Dashboard</li>
             <li><FaHistory className="icon" /> Disease History</li>
-            <li><FaSyringe className="icon" /> Vaccination Details</li>
+            <li onClick={handleVaccinationDetails}><FaSyringe className="icon" /> Vaccination Details</li>
             <li onClick={handleRequestAppointment}><FaCalendarCheck className="icon" /> Request Appointment</li>
             <li onClick={handleDonateBlood}><FaHeart className="icon" /> Donate Blood</li>
             <li onClick={handleShowNotifications}><FaBell className="icon" /> Notifications</li>
@@ -137,6 +166,22 @@ const PatientDashboard = () => {
             <div className="modal-content">
               <span className="close" onClick={closeAppointmentForm}>&times;</span>
               <AppointmentForm appointment={selectedAppointment} closeModal={closeAppointmentForm} />
+            </div>
+          </div>
+        )}
+        {isVaccinationDetailsOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={closeVaccinationDetails}>&times;</span>
+              <VaccinationDetailsTable openForm={openVaccinationForm} />
+            </div>
+          </div>
+        )}
+        {isVaccinationFormOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={closeVaccinationForm}>&times;</span>
+              <VaccinationForm addVaccination={addVaccination} closeModal={closeVaccinationForm} />
             </div>
           </div>
         )}
