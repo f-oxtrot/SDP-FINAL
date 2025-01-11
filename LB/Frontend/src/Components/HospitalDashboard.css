@@ -20,11 +20,18 @@
 }
 
 .dashboard-header {
-  background-color: #cccdef00;
-  color: rgb(248, 244, 244);
+  background-color: rgba(52, 32, 152, 0);
+  color: #fff;
   padding: 20px;
   text-align: center;
   position: relative; /* Add relative positioning */
+  transition: background-color 0.3s, color 0.3s; /* Add transition for hover effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header:hover {
+  background-color: rgba(52, 32, 152, 0); /* Change background color on hover */
+  color: #ffffff; /* Change text color on hover */
 }
 
 .dashboard-logo {
@@ -58,7 +65,7 @@
   left: 0; /* Position the sidebar on the left */
   width: 200px;
   height: 100%;
-  background-color: rgba(52, 32, 152, 0.21);
+  background-color: rgba(52, 32, 152, 0.076);
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Adjust the shadow direction */
   padding: 20px;
   display: flex;
@@ -68,7 +75,7 @@
 }
 
 .dashboard-sidebar:hover {
-  background-color: rgba(52, 32, 152, 0.5); /* Change background color on hover */
+  background-color: rgba(52, 32, 152, 0.26); /* Change background color on hover */
 }
 
 .dashboard-sidebar ul {
@@ -79,27 +86,29 @@
 
 .dashboard-sidebar li {
   margin-bottom: 20px;
-  font-size: 1.5em;
+  font-size: 1.2em;
   cursor: pointer;
   transition: color 0.3s;
 }
 
 .dashboard-sidebar li:hover {
-  color: #007bff;
+  color: #ffcc00;
 }
 
 .diagnosis-report {
-  background-color: rgba(7, 7, 8, 0.232);
+  background-color: rgba(244, 244, 247, 0.528);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 60%;
   max-width: 600px;
   text-align: center;
+  position: relative;
+  color: #333; 
 }
 
 .search-form {
-  display: block;
+  display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
@@ -117,7 +126,7 @@
 .search-button {
   padding: 10px;
   font-size: 1em;
-  color: white;
+  color: rgb(255, 251, 251);
   background-color: #007bff;
   border: none;
   border-radius: 5px;
@@ -183,18 +192,20 @@
 }
 
 .doctors-appointment {
-  background-color: rgba(7, 7, 8, 0.232);
-  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.542);
+  padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 60%;
-  max-width: 600px;
+  width: 30%;
+  max-width: 800px;
   text-align: center;
+  position: relative;
+  color: #333;
 }
 
 .date-picker {
   padding: 10px;
-  font-size: 2em;
+  font-size: 1.75em;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -238,5 +249,71 @@
 
 .reject-button:hover {
   background-color: #c82333;
+}
 
+.give-schedule {
+  background-color: rgba(255, 255, 255, 0.518);
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  max-width: 800px;
+  text-align: center;
+  position: relative;
+  color: #333;
+}
+
+.schedule-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.close-button:hover {
+  color: #ff0000;
 }

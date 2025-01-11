@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './HospitalDashboard.css';
 import logo from '../assets/Images/logo.png';
 import squareLogo from '../assets/Images/squarelogo.png'; // Import the square logo
@@ -11,10 +12,23 @@ const HospitalDashboard = () => {
   const [patientProfile, setPatientProfile] = useState(null);
   const [selectedDate, setSelectedDate] = useState('');
   const [pendingRequests, setPendingRequests] = useState([]);
+  const [doctorName, setDoctorName] = useState('');
+  const [scheduleDate, setScheduleDate] = useState('');
+  const [scheduleTime, setScheduleTime] = useState('');
+  const [patientNid, setPatientNid] = useState('');
+  const navigate = useNavigate();
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option);
-    setPatientProfile(null); // Reset patient profile when option changes
+    if (option === 'Sign Out') {
+      navigate('/'); // Navigate to the home page
+    } else {
+      setSelectedOption(option);
+      setPatientProfile(null); // Reset patient profile when option changes
+    }
+  };
+
+  const handleCloseForm = () => {
+    setSelectedOption('');
   };
 
   const handleSearchChange = (e) => {
@@ -68,6 +82,12 @@ const HospitalDashboard = () => {
     return nid.toString().padStart(10, '0');
   };
 
+  const handleScheduleSubmit = (e) => {
+    e.preventDefault();
+    // Handle schedule submission
+    console.log(`Scheduled for Dr. ${doctorName} on ${scheduleDate} at ${scheduleTime} for patient NID ${patientNid}`);
+  };
+
   return (
     <div className="dashboard-container">
       <video className="dashboard-video" src={videoSrc} autoPlay loop muted />
@@ -80,11 +100,14 @@ const HospitalDashboard = () => {
         <ul>
           <li onClick={() => handleOptionClick('Diagnosis Report')}>Diagnosis Report</li>
           <li onClick={() => handleOptionClick('Doctors Appointment')}>Doctors Appointment</li>
+          <li onClick={() => handleOptionClick('Give Schedule')}>Give Schedule</li> {/* Add this line */}
+          <li onClick={() => handleOptionClick('Sign Out')}>Sign Out</li> {/* Add this line */}
         </ul>
       </aside>
       <main className="dashboard-main">
         {selectedOption === 'Diagnosis Report' && (
           <div className="diagnosis-report">
+            <button className="close-button" onClick={handleCloseForm}>×</button>
             <form onSubmit={handleSearchSubmit} className="search-form">
               <input
                 type="text"
@@ -136,6 +159,7 @@ const HospitalDashboard = () => {
         )}
         {selectedOption === 'Doctors Appointment' && (
           <div className="doctors-appointment">
+            <button className="close-button" onClick={handleCloseForm}>×</button>
             <h2>Pending Requests</h2>
             <input
               type="date"
@@ -170,6 +194,65 @@ const HospitalDashboard = () => {
                 </tbody>
               </table>
             )}
+          </div>
+        )}
+        {selectedOption === 'Give Schedule' && (
+          <div className="give-schedule">
+            <button className="close-button" onClick={handleCloseForm}>×</button>
+            <h2>Give Schedule</h2>
+            <form onSubmit={handleScheduleSubmit} className="schedule-form">
+              <div className="form-group">
+                <label htmlFor="doctor-name">Doctor Name</label>
+                <select
+                  id="doctor-name"
+                  value={doctorName}
+                  onChange={(e) => setDoctorName(e.target.value)}
+                  className="form-control"
+                >
+                  <option value="">Select Doctor</option>
+                  <option value="Dr. Smith">Dr. Smith</option>
+                  <option value="Dr. Johnson">Dr. Johnson</option>
+                  <option value="Dr. Brown">Dr. Brown</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="schedule-date">Select Date</label>
+                <input
+                  type="date"
+                  id="schedule-date"
+                  value={scheduleDate}
+                  onChange={(e) => setScheduleDate(e.target.value)}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="schedule-time">Select Time</label>
+                <input
+                  type="time"
+                  id="schedule-time"
+                  value={scheduleTime}
+                  onChange={(e) => setScheduleTime(e.target.value)}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="patient-nid">Patient NID No</label>
+                <input
+                  type="number"
+                  id="patient-nid"
+                  value={patientNid}
+                  onChange={(e) => setPatientNid(e.target.value)}
+                  className="form-control"
+                />
+              </div>
+              <button type="submit" className="submit-button">Submit</button>
+            </form>
+          </div>
+        )}
+        {selectedOption === 'Sign Out' && (
+          <div className="sign-out">
+            <h2>Sign Out</h2>
+            {/* Add your Sign Out content here */}
           </div>
         )}
       </main>
