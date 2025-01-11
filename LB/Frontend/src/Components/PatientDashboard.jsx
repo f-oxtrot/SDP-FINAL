@@ -5,12 +5,17 @@ import logo from '../assets/Images/logo.png';
 import profilePic from '../assets/Images/farhan.jpg';
 import UpdatePatientInfo from './UpdatePatientInfo';
 import DonateBloodTable from './DonateBloodTable';
+import RequestAppointmentTable from './RequestAppointmentTable';
+import AppointmentForm from './AppointmentForm';
 import './DoctorDashboard.css'; // Reuse the same CSS
 
 const PatientDashboard = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [isUpdateInfoOpen, setIsUpdateInfoOpen] = useState(false);
   const [isDonateBloodOpen, setIsDonateBloodOpen] = useState(false);
+  const [isRequestAppointmentOpen, setIsRequestAppointmentOpen] = useState(false);
+  const [isAppointmentFormOpen, setIsAppointmentFormOpen] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [notifications, setNotifications] = useState([
     { id: 1, message: 'New vaccination update available', time: '10:30 AM' },
     { id: 2, message: 'Appointment confirmed with Dr. Smith', time: '11:00 AM' },
@@ -44,6 +49,23 @@ const PatientDashboard = () => {
     setIsDonateBloodOpen(false);
   };
 
+  const handleRequestAppointment = () => {
+    setIsRequestAppointmentOpen(true);
+  };
+
+  const closeRequestAppointment = () => {
+    setIsRequestAppointmentOpen(false);
+  };
+
+  const openAppointmentForm = (appointment) => {
+    setSelectedAppointment(appointment);
+    setIsAppointmentFormOpen(true);
+  };
+
+  const closeAppointmentForm = () => {
+    setIsAppointmentFormOpen(false);
+  };
+
   return (
     <div className="doctor-dashboard">
       <img src={logo} alt="LifeBeacon Logo" className="logo" />
@@ -57,7 +79,7 @@ const PatientDashboard = () => {
             <li><FaTachometerAlt className="icon" /> Dashboard</li>
             <li><FaHistory className="icon" /> Disease History</li>
             <li><FaSyringe className="icon" /> Vaccination Details</li>
-            <li><FaCalendarCheck className="icon" /> Request Appointment</li>
+            <li onClick={handleRequestAppointment}><FaCalendarCheck className="icon" /> Request Appointment</li>
             <li onClick={handleDonateBlood}><FaHeart className="icon" /> Donate Blood</li>
             <li onClick={handleShowNotifications}><FaBell className="icon" /> Notifications</li>
             <li onClick={handleUpdateInfo}><FaUserEdit className="icon" /> Update Personal Info</li>
@@ -99,6 +121,22 @@ const PatientDashboard = () => {
             <div className="modal-content">
               <span className="close" onClick={closeDonateBlood}>&times;</span>
               <DonateBloodTable closeModal={closeDonateBlood} />
+            </div>
+          </div>
+        )}
+        {isRequestAppointmentOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={closeRequestAppointment}>&times;</span>
+              <RequestAppointmentTable openForm={openAppointmentForm} />
+            </div>
+          </div>
+        )}
+        {isAppointmentFormOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={closeAppointmentForm}>&times;</span>
+              <AppointmentForm appointment={selectedAppointment} closeModal={closeAppointmentForm} />
             </div>
           </div>
         )}
