@@ -45,7 +45,7 @@ const IntegratedHospitalsSection = () => (
         </div>
         <div className="polaroid-box">
           <div className="polaroid-caption">
-            <h2>And Almost all the reknowned hospitals of Bangladesh</h2>
+            <h2>And almost all the renowned hospitals of Bangladesh</h2>
           </div>
         </div>
       </div>
